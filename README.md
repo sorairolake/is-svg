@@ -27,6 +27,20 @@ is-svg = "0.1.0"
 ### Example
 
 ```rust
+assert_eq!(
+    is_svg::is_svg(include_str!("../tests/data/image.svg")),
+    true
+);
+assert_eq!(
+    is_svg::is_svg(include_bytes!("../tests/data/image.png")),
+    false
+);
+
+// `.svgz` is also supported.
+assert_eq!(
+    is_svg::is_svg(include_bytes!("../tests/data/image.svgz")),
+    true
+);
 ```
 
 ### Documentation
