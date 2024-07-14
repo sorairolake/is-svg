@@ -331,6 +331,19 @@ mod tests {
     }
 
     #[test]
+    fn is_svg_from_invalid_svg() {
+        assert!(!super::is_svg(include_str!(
+            "../tests/data/resources/dtd.svg"
+        )));
+        assert!(!super::is_svg(include_str!(
+            "../tests/data/resources/unclosed.svg"
+        )));
+        assert!(!super::is_svg(include_str!(
+            "../tests/data/resources/xml_declaration.svg"
+        )));
+    }
+
+    #[test]
     fn is_svg_from_non_svg() {
         assert!(!super::is_svg(include_str!(
             "../tests/data/resvg/green.css"
@@ -346,6 +359,24 @@ mod tests {
         )));
         assert!(!super::is_svg(include_bytes!(
             "../tests/data/resvg/image.png"
+        )));
+    }
+
+    #[test]
+    fn is_svg_from_empty() {
+        assert!(!super::is_svg([]));
+        assert!(!super::is_svg(include_bytes!(
+            "../tests/data/resources/empty.gz"
+        )));
+    }
+
+    #[test]
+    fn is_svg_from_html() {
+        assert!(!super::is_svg(include_str!(
+            "../tests/data/resources/index.html"
+        )));
+        assert!(!super::is_svg(include_str!(
+            "../tests/data/resources/index.xhtml"
         )));
     }
 
@@ -554,6 +585,19 @@ mod tests {
     }
 
     #[test]
+    fn is_svg_string_from_invalid_svg() {
+        assert!(!super::is_svg_string(include_str!(
+            "../tests/data/resources/dtd.svg"
+        )));
+        assert!(!super::is_svg_string(include_str!(
+            "../tests/data/resources/unclosed.svg"
+        )));
+        assert!(!super::is_svg_string(include_str!(
+            "../tests/data/resources/xml_declaration.svg"
+        )));
+    }
+
+    #[test]
     fn is_svg_string_from_non_svg() {
         assert!(!super::is_svg_string(include_str!(
             "../tests/data/resvg/green.css"
@@ -569,6 +613,24 @@ mod tests {
         )));
         assert!(!super::is_svg_string(include_bytes!(
             "../tests/data/resvg/image.png"
+        )));
+    }
+
+    #[test]
+    fn is_svg_string_from_empty() {
+        assert!(!super::is_svg_string([]));
+        assert!(!super::is_svg_string(include_bytes!(
+            "../tests/data/resources/empty.gz"
+        )));
+    }
+
+    #[test]
+    fn is_svg_string_from_html() {
+        assert!(!super::is_svg_string(include_str!(
+            "../tests/data/resources/index.html"
+        )));
+        assert!(!super::is_svg_string(include_str!(
+            "../tests/data/resources/index.xhtml"
         )));
     }
 
@@ -777,6 +839,19 @@ mod tests {
     }
 
     #[test]
+    fn is_svgz_from_invalid_svg() {
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/resources/dtd.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/resources/unclosed.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/resources/xml_declaration.svg"
+        )));
+    }
+
+    #[test]
     fn is_svgz_from_non_svg() {
         assert!(!super::is_svgz(include_str!(
             "../tests/data/resvg/green.css"
@@ -792,6 +867,24 @@ mod tests {
         )));
         assert!(!super::is_svgz(include_bytes!(
             "../tests/data/resvg/image.png"
+        )));
+    }
+
+    #[test]
+    fn is_svgz_from_empty() {
+        assert!(!super::is_svgz([]));
+        assert!(!super::is_svgz(include_bytes!(
+            "../tests/data/resources/empty.gz"
+        )));
+    }
+
+    #[test]
+    fn is_svgz_from_html() {
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/resources/index.html"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/resources/index.xhtml"
         )));
     }
 }
