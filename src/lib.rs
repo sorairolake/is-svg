@@ -9,17 +9,17 @@
 //!
 //! ```
 //! assert_eq!(
-//!     is_svg::is_svg(include_str!("../tests/data/image.svg")),
+//!     is_svg::is_svg(include_str!("../tests/data/resvg/image.svg")),
 //!     true
 //! );
 //! assert_eq!(
-//!     is_svg::is_svg(include_bytes!("../tests/data/image.png")),
+//!     is_svg::is_svg(include_bytes!("../tests/data/resvg/image.png")),
 //!     false
 //! );
 //!
 //! // `.svgz` is also supported.
 //! assert_eq!(
-//!     is_svg::is_svg(include_bytes!("../tests/data/image.svgz")),
+//!     is_svg::is_svg(include_bytes!("../tests/data/resvg/image.svgz")),
 //!     true
 //! );
 //! ```
@@ -49,16 +49,16 @@ const GZIP_MAGIC_NUMBER: [u8; 2] = [0x1f, 0x8b];
 ///
 /// ```
 /// assert_eq!(
-///     is_svg::is_svg(include_str!("../tests/data/image.svg")),
+///     is_svg::is_svg(include_str!("../tests/data/resvg/image.svg")),
 ///     true
 /// );
 /// assert_eq!(
-///     is_svg::is_svg(include_bytes!("../tests/data/image.png")),
+///     is_svg::is_svg(include_bytes!("../tests/data/resvg/image.png")),
 ///     false
 /// );
 ///
 /// assert_eq!(
-///     is_svg::is_svg(include_bytes!("../tests/data/image.svgz")),
+///     is_svg::is_svg(include_bytes!("../tests/data/resvg/image.svgz")),
 ///     true
 /// );
 /// ```
@@ -80,16 +80,16 @@ pub fn is_svg(data: impl AsRef<[u8]>) -> bool {
 ///
 /// ```
 /// assert_eq!(
-///     is_svg::is_svg_string(include_str!("../tests/data/image.svg")),
+///     is_svg::is_svg_string(include_str!("../tests/data/resvg/image.svg")),
 ///     true
 /// );
 /// assert_eq!(
-///     is_svg::is_svg_string(include_bytes!("../tests/data/image.png")),
+///     is_svg::is_svg_string(include_bytes!("../tests/data/resvg/image.png")),
 ///     false
 /// );
 ///
 /// assert_eq!(
-///     is_svg::is_svg_string(include_bytes!("../tests/data/image.svgz")),
+///     is_svg::is_svg_string(include_bytes!("../tests/data/resvg/image.svgz")),
 ///     false
 /// );
 /// ```
@@ -108,16 +108,16 @@ pub fn is_svg_string(data: impl AsRef<[u8]>) -> bool {
 ///
 /// ```
 /// assert_eq!(
-///     is_svg::is_svgz(include_bytes!("../tests/data/image.svgz")),
+///     is_svg::is_svgz(include_bytes!("../tests/data/resvg/image.svgz")),
 ///     true
 /// );
 /// assert_eq!(
-///     is_svg::is_svgz(include_bytes!("../tests/data/image.png")),
+///     is_svg::is_svgz(include_bytes!("../tests/data/resvg/image.png")),
 ///     false
 /// );
 ///
 /// assert_eq!(
-///     is_svg::is_svgz(include_str!("../tests/data/image.svg")),
+///     is_svg::is_svgz(include_str!("../tests/data/resvg/image.svg")),
 ///     false
 /// );
 /// ```
@@ -129,98 +129,669 @@ pub fn is_svgz(data: impl AsRef<[u8]>) -> bool {
 #[cfg(test)]
 mod tests {
     #[test]
-    fn is_svg() {
-        assert!(super::is_svg(include_str!("../tests/data/image-033.svg")));
-        assert!(super::is_svg(include_str!("../tests/data/image.svg")));
-        assert!(super::is_svg(include_str!("../tests/data/simple-text.svg")));
+    #[allow(clippy::cognitive_complexity, clippy::too_many_lines)]
+    fn is_svg_from_svg() {
         assert!(super::is_svg(include_str!(
-            "../tests/data/SVG_animation_using_CSS.svg"
+            "../tests/data/resvg/image-033.svg"
+        )));
+        assert!(super::is_svg(include_str!("../tests/data/resvg/image.svg")));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/resvg/simple-text.svg"
         )));
         assert!(super::is_svg(include_str!(
-            "../tests/data/SVG_animation_using_ES.svg"
+            "../tests/data/usvg/clip-path-with-complex-text-expected.svg"
         )));
         assert!(super::is_svg(include_str!(
-            "../tests/data/SVG_animation_using_SMIL.svg"
+            "../tests/data/usvg/clip-path-with-complex-text.svg"
         )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/clip-path-with-object-units-multi-use-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/clip-path-with-object-units-multi-use.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/clip-path-with-text-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/clip-path-with-text.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/ellipse-simple-case-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/ellipse-simple-case.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/filter-id-with-prefix-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/filter-id-with-prefix.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/filter-with-object-units-multi-use-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/filter-with-object-units-multi-use.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/generate-id-clip-path-for-symbol-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/generate-id-clip-path-for-symbol.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/generate-id-filter-function-v1-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/generate-id-filter-function-v1.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/generate-id-filter-function-v2-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/generate-id-filter-function-v2.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/mask-with-object-units-multi-use-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/mask-with-object-units-multi-use.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/path-simple-case-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/path-simple-case.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-id-clip-path-v1-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-id-clip-path-v1.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-id-clip-path-v2-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-id-clip-path-v2.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-id-fe-image-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-id-fe-image-with-opacity-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-id-fe-image-with-opacity.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-id-fe-image.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-id-filter-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-id-filter.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-id-for-clip-path-in-pattern-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-id-for-clip-path-in-pattern.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-in-clip-path-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-in-clip-path.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-in-mask-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-in-mask.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-in-pattern-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-in-pattern.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-multiple-font-families-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-multiple-font-families.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-on-path-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-on-path.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-simple-case-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-simple-case.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-with-complex-text-decoration-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-with-complex-text-decoration.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-with-dx-and-dy-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-with-dx-and-dy.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-with-nested-baseline-shift-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-with-nested-baseline-shift.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-with-rotate-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/preserve-text-with-rotate.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/text-simple-case-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/text-simple-case.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/text-with-generated-gradients-expected.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/usvg/text-with-generated-gradients.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/wikipedia/SVG_animation_using_CSS.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/wikipedia/SVG_animation_using_ES.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/wikipedia/SVG_animation_using_SMIL.svg"
+        )));
+    }
 
-        assert!(super::is_svg(include_bytes!("../tests/data/image.svgz")));
+    #[test]
+    fn is_svg_from_svgz() {
+        assert!(super::is_svg(include_bytes!(
+            "../tests/data/resvg/image.svgz"
+        )));
+    }
 
-        assert!(!super::is_svg(include_str!("../tests/data/green.css")));
+    #[test]
+    fn is_svg_from_non_svg() {
+        assert!(!super::is_svg(include_str!(
+            "../tests/data/resvg/green.css"
+        )));
         assert!(!super::is_svg(include_bytes!(
-            "../tests/data/image-63x61.png"
+            "../tests/data/resvg/image-63x61.png"
         )));
-        assert!(!super::is_svg(include_bytes!("../tests/data/image.gif")));
-        assert!(!super::is_svg(include_bytes!("../tests/data/image.jpg")));
-        assert!(!super::is_svg(include_bytes!("../tests/data/image.png")));
+        assert!(!super::is_svg(include_bytes!(
+            "../tests/data/resvg/image.gif"
+        )));
+        assert!(!super::is_svg(include_bytes!(
+            "../tests/data/resvg/image.jpg"
+        )));
+        assert!(!super::is_svg(include_bytes!(
+            "../tests/data/resvg/image.png"
+        )));
     }
 
     #[test]
-    fn is_svg_string() {
+    #[allow(clippy::cognitive_complexity, clippy::too_many_lines)]
+    fn is_svg_string_from_svg() {
         assert!(super::is_svg_string(include_str!(
-            "../tests/data/image-033.svg"
+            "../tests/data/resvg/image-033.svg"
         )));
         assert!(super::is_svg_string(include_str!(
-            "../tests/data/image.svg"
+            "../tests/data/resvg/image.svg"
         )));
         assert!(super::is_svg_string(include_str!(
-            "../tests/data/simple-text.svg"
+            "../tests/data/resvg/simple-text.svg"
         )));
         assert!(super::is_svg_string(include_str!(
-            "../tests/data/SVG_animation_using_CSS.svg"
+            "../tests/data/usvg/clip-path-with-complex-text-expected.svg"
         )));
         assert!(super::is_svg_string(include_str!(
-            "../tests/data/SVG_animation_using_ES.svg"
+            "../tests/data/usvg/clip-path-with-complex-text.svg"
         )));
         assert!(super::is_svg_string(include_str!(
-            "../tests/data/SVG_animation_using_SMIL.svg"
+            "../tests/data/usvg/clip-path-with-object-units-multi-use-expected.svg"
         )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/clip-path-with-object-units-multi-use.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/clip-path-with-text-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/clip-path-with-text.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/ellipse-simple-case-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/ellipse-simple-case.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/filter-id-with-prefix-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/filter-id-with-prefix.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/filter-with-object-units-multi-use-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/filter-with-object-units-multi-use.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/generate-id-clip-path-for-symbol-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/generate-id-clip-path-for-symbol.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/generate-id-filter-function-v1-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/generate-id-filter-function-v1.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/generate-id-filter-function-v2-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/generate-id-filter-function-v2.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/mask-with-object-units-multi-use-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/mask-with-object-units-multi-use.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/path-simple-case-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/path-simple-case.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-id-clip-path-v1-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-id-clip-path-v1.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-id-clip-path-v2-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-id-clip-path-v2.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-id-fe-image-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-id-fe-image-with-opacity-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-id-fe-image-with-opacity.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-id-fe-image.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-id-filter-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-id-filter.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-id-for-clip-path-in-pattern-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-id-for-clip-path-in-pattern.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-in-clip-path-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-in-clip-path.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-in-mask-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-in-mask.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-in-pattern-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-in-pattern.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-multiple-font-families-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-multiple-font-families.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-on-path-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-on-path.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-simple-case-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-simple-case.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-with-complex-text-decoration-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-with-complex-text-decoration.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-with-dx-and-dy-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-with-dx-and-dy.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-with-nested-baseline-shift-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-with-nested-baseline-shift.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-with-rotate-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/preserve-text-with-rotate.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/text-simple-case-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/text-simple-case.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/text-with-generated-gradients-expected.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/usvg/text-with-generated-gradients.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/wikipedia/SVG_animation_using_CSS.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/wikipedia/SVG_animation_using_ES.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/wikipedia/SVG_animation_using_SMIL.svg"
+        )));
+    }
 
+    #[test]
+    fn is_svg_string_from_svgz() {
         assert!(!super::is_svg_string(include_bytes!(
-            "../tests/data/image.svgz"
+            "../tests/data/resvg/image.svgz"
         )));
+    }
 
+    #[test]
+    fn is_svg_string_from_non_svg() {
         assert!(!super::is_svg_string(include_str!(
-            "../tests/data/green.css"
+            "../tests/data/resvg/green.css"
         )));
         assert!(!super::is_svg_string(include_bytes!(
-            "../tests/data/image-63x61.png"
+            "../tests/data/resvg/image-63x61.png"
         )));
         assert!(!super::is_svg_string(include_bytes!(
-            "../tests/data/image.gif"
+            "../tests/data/resvg/image.gif"
         )));
         assert!(!super::is_svg_string(include_bytes!(
-            "../tests/data/image.jpg"
+            "../tests/data/resvg/image.jpg"
         )));
         assert!(!super::is_svg_string(include_bytes!(
-            "../tests/data/image.png"
+            "../tests/data/resvg/image.png"
         )));
     }
 
     #[test]
-    fn is_svgz() {
-        assert!(!super::is_svgz(include_str!("../tests/data/image-033.svg")));
-        assert!(!super::is_svgz(include_str!("../tests/data/image.svg")));
+    #[allow(clippy::cognitive_complexity, clippy::too_many_lines)]
+    fn is_svgz_from_svg() {
         assert!(!super::is_svgz(include_str!(
-            "../tests/data/simple-text.svg"
+            "../tests/data/resvg/image-033.svg"
         )));
         assert!(!super::is_svgz(include_str!(
-            "../tests/data/SVG_animation_using_CSS.svg"
+            "../tests/data/resvg/image.svg"
         )));
         assert!(!super::is_svgz(include_str!(
-            "../tests/data/SVG_animation_using_ES.svg"
+            "../tests/data/resvg/simple-text.svg"
         )));
         assert!(!super::is_svgz(include_str!(
-            "../tests/data/SVG_animation_using_SMIL.svg"
+            "../tests/data/usvg/clip-path-with-complex-text-expected.svg"
         )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/clip-path-with-complex-text.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/clip-path-with-object-units-multi-use-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/clip-path-with-object-units-multi-use.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/clip-path-with-text-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/clip-path-with-text.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/ellipse-simple-case-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/ellipse-simple-case.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/filter-id-with-prefix-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/filter-id-with-prefix.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/filter-with-object-units-multi-use-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/filter-with-object-units-multi-use.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/generate-id-clip-path-for-symbol-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/generate-id-clip-path-for-symbol.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/generate-id-filter-function-v1-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/generate-id-filter-function-v1.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/generate-id-filter-function-v2-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/generate-id-filter-function-v2.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/mask-with-object-units-multi-use-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/mask-with-object-units-multi-use.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/path-simple-case-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/path-simple-case.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-id-clip-path-v1-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-id-clip-path-v1.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-id-clip-path-v2-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-id-clip-path-v2.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-id-fe-image-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-id-fe-image-with-opacity-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-id-fe-image-with-opacity.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-id-fe-image.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-id-filter-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-id-filter.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-id-for-clip-path-in-pattern-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-id-for-clip-path-in-pattern.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-in-clip-path-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-in-clip-path.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-in-mask-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-in-mask.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-in-pattern-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-in-pattern.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-multiple-font-families-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-multiple-font-families.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-on-path-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-on-path.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-simple-case-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-simple-case.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-with-complex-text-decoration-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-with-complex-text-decoration.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-with-dx-and-dy-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-with-dx-and-dy.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-with-nested-baseline-shift-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-with-nested-baseline-shift.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-with-rotate-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/preserve-text-with-rotate.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/text-simple-case-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/text-simple-case.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/text-with-generated-gradients-expected.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/usvg/text-with-generated-gradients.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/wikipedia/SVG_animation_using_CSS.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/wikipedia/SVG_animation_using_ES.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/wikipedia/SVG_animation_using_SMIL.svg"
+        )));
+    }
 
-        assert!(super::is_svgz(include_bytes!("../tests/data/image.svgz")));
+    #[test]
+    fn is_svgz_from_svgz() {
+        assert!(super::is_svgz(include_bytes!(
+            "../tests/data/resvg/image.svgz"
+        )));
+    }
 
-        assert!(!super::is_svgz(include_str!("../tests/data/green.css")));
+    #[test]
+    fn is_svgz_from_non_svg() {
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/resvg/green.css"
+        )));
         assert!(!super::is_svgz(include_bytes!(
-            "../tests/data/image-63x61.png"
+            "../tests/data/resvg/image-63x61.png"
         )));
-        assert!(!super::is_svgz(include_bytes!("../tests/data/image.gif")));
-        assert!(!super::is_svgz(include_bytes!("../tests/data/image.jpg")));
-        assert!(!super::is_svgz(include_bytes!("../tests/data/image.png")));
+        assert!(!super::is_svgz(include_bytes!(
+            "../tests/data/resvg/image.gif"
+        )));
+        assert!(!super::is_svgz(include_bytes!(
+            "../tests/data/resvg/image.jpg"
+        )));
+        assert!(!super::is_svgz(include_bytes!(
+            "../tests/data/resvg/image.png"
+        )));
     }
 }
