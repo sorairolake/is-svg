@@ -130,12 +130,14 @@ pub fn is_svgz(data: impl AsRef<[u8]>) -> bool {
 mod tests {
     #[test]
     fn is_svg() {
-        assert!(super::is_svg(include_str!("../tests/data/Ampel.svg")));
         assert!(super::is_svg(include_str!("../tests/data/image-033.svg")));
         assert!(super::is_svg(include_str!("../tests/data/image.svg")));
         assert!(super::is_svg(include_str!("../tests/data/simple-text.svg")));
         assert!(super::is_svg(include_str!(
             "../tests/data/SVG_animation_using_CSS.svg"
+        )));
+        assert!(super::is_svg(include_str!(
+            "../tests/data/SVG_animation_using_ES.svg"
         )));
         assert!(super::is_svg(include_str!(
             "../tests/data/SVG_animation_using_SMIL.svg"
@@ -155,9 +157,6 @@ mod tests {
     #[test]
     fn is_svg_string() {
         assert!(super::is_svg_string(include_str!(
-            "../tests/data/Ampel.svg"
-        )));
-        assert!(super::is_svg_string(include_str!(
             "../tests/data/image-033.svg"
         )));
         assert!(super::is_svg_string(include_str!(
@@ -168,6 +167,9 @@ mod tests {
         )));
         assert!(super::is_svg_string(include_str!(
             "../tests/data/SVG_animation_using_CSS.svg"
+        )));
+        assert!(super::is_svg_string(include_str!(
+            "../tests/data/SVG_animation_using_ES.svg"
         )));
         assert!(super::is_svg_string(include_str!(
             "../tests/data/SVG_animation_using_SMIL.svg"
@@ -197,13 +199,15 @@ mod tests {
     #[test]
     fn is_svgz() {
         assert!(!super::is_svgz(include_str!("../tests/data/image-033.svg")));
-        assert!(!super::is_svgz(include_str!("../tests/data/Ampel.svg")));
         assert!(!super::is_svgz(include_str!("../tests/data/image.svg")));
         assert!(!super::is_svgz(include_str!(
             "../tests/data/simple-text.svg"
         )));
         assert!(!super::is_svgz(include_str!(
             "../tests/data/SVG_animation_using_CSS.svg"
+        )));
+        assert!(!super::is_svgz(include_str!(
+            "../tests/data/SVG_animation_using_ES.svg"
         )));
         assert!(!super::is_svgz(include_str!(
             "../tests/data/SVG_animation_using_SMIL.svg"
