@@ -2,7 +2,7 @@
 //
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
-= Tests
+= Test Data from Wikipedia
 :enwp-url: https://en.wikipedia.org
 
 Test data were imported from {enwp-url}[Wikipedia].
