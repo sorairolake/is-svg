@@ -151,3 +151,13 @@ fn is_svgz_from_mathml() {
 fn is_svgz_from_html() {
     assert!(!is_svg::is_svgz(include_str!("data/resources/index.html")));
 }
+
+#[test]
+fn is_svgz_from_compressed_svg() {
+    assert!(!is_svg::is_svgz(include_bytes!(
+        "data/w3/svg-logo-v.svg.lz"
+    )));
+    assert!(!is_svg::is_svgz(include_bytes!(
+        "data/w3/svg-logo-v.svg.zst"
+    )));
+}

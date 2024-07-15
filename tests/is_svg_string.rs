@@ -167,3 +167,13 @@ fn is_svg_string_from_html() {
         "data/resources/index.html"
     )));
 }
+
+#[test]
+fn is_svg_string_from_compressed_svg() {
+    assert!(!is_svg::is_svg_string(include_bytes!(
+        "data/w3/svg-logo-v.svg.lz"
+    )));
+    assert!(!is_svg::is_svg_string(include_bytes!(
+        "data/w3/svg-logo-v.svg.zst"
+    )));
+}
