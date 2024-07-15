@@ -5,7 +5,7 @@
 = Tests
 :enwp-url: https://en.wikipedia.org
 
-Test data files imported those of {enwp-url}[Wikipedia].
+Test data were imported from {enwp-url}[Wikipedia].
 
 .These can be obtained from
 * {enwp-url}/w/index.php?title=SVG_animation&oldid=1193213152[SVG animation]

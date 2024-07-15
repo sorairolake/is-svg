@@ -13,13 +13,6 @@
 #[allow(clippy::cognitive_complexity, clippy::too_many_lines)]
 fn is_svg_string_from_svg() {
     assert!(is_svg::is_svg_string(include_str!(
-        "data/resvg/image-033.svg"
-    )));
-    assert!(is_svg::is_svg_string(include_str!("data/resvg/image.svg")));
-    assert!(is_svg::is_svg_string(include_str!(
-        "data/resvg/simple-text.svg"
-    )));
-    assert!(is_svg::is_svg_string(include_str!(
         "data/usvg/clip-path-with-complex-text.svg"
     )));
     assert!(is_svg::is_svg_string(include_str!(
@@ -107,6 +100,9 @@ fn is_svg_string_from_svg() {
         "data/usvg/text-with-generated-gradients.svg"
     )));
     assert!(is_svg::is_svg_string(include_str!(
+        "data/w3/svg-logo-v.svg"
+    )));
+    assert!(is_svg::is_svg_string(include_str!(
         "data/wikipedia/SVG_animation_using_CSS.svg"
     )));
     assert!(is_svg::is_svg_string(include_str!(
@@ -120,7 +116,7 @@ fn is_svg_string_from_svg() {
 #[test]
 fn is_svg_string_from_svgz() {
     assert!(!is_svg::is_svg_string(include_bytes!(
-        "data/resvg/image.svgz"
+        "data/w3/svg-logo-v.svgz"
     )));
 }
 
@@ -139,18 +135,14 @@ fn is_svg_string_from_invalid_svg() {
 
 #[test]
 fn is_svg_string_from_non_svg() {
-    assert!(!is_svg::is_svg_string(include_str!("data/resvg/green.css")));
     assert!(!is_svg::is_svg_string(include_bytes!(
-        "data/resvg/image-63x61.png"
+        "data/w3/svg-logo-v.jxl"
     )));
     assert!(!is_svg::is_svg_string(include_bytes!(
-        "data/resvg/image.gif"
+        "data/w3/svg-logo-v.png"
     )));
     assert!(!is_svg::is_svg_string(include_bytes!(
-        "data/resvg/image.jpg"
-    )));
-    assert!(!is_svg::is_svg_string(include_bytes!(
-        "data/resvg/image.png"
+        "data/w3/svg-logo-v.webp"
     )));
 }
 
@@ -163,11 +155,15 @@ fn is_svg_string_from_empty() {
 }
 
 #[test]
+fn is_svg_string_from_mathml() {
+    assert!(!is_svg::is_svg_string(include_str!(
+        "data/resources/quadratic_formula.mml"
+    )));
+}
+
+#[test]
 fn is_svg_string_from_html() {
     assert!(!is_svg::is_svg_string(include_str!(
         "data/resources/index.html"
-    )));
-    assert!(!is_svg::is_svg_string(include_str!(
-        "data/resources/index.xhtml"
     )));
 }
