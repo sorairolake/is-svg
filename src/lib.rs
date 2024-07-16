@@ -5,6 +5,11 @@
 //! The `is-svg` crate is a library for testing whether a given data is a [SVG]
 //! image.
 //!
+//! This crate assumes the given data to be a valid SVG image if
+//! [`usvg::Tree::from_data`] returns [`Ok`], and an invalid SVG image if it
+//! returns [`Err`]. It supports both a SVG string and a [gzip-compressed] SVG
+//! data.
+//!
 //! # Examples
 //!
 //! ```
@@ -25,6 +30,7 @@
 //! ```
 //!
 //! [SVG]: https://www.w3.org/Graphics/SVG/
+//! [gzip-compressed]: https://datatracker.ietf.org/doc/html/rfc1952
 
 #![doc(html_root_url = "https://docs.rs/is-svg/0.1.0/")]
 // Lint levels of rustc.
@@ -41,9 +47,9 @@ use usvg::{Options, Tree};
 /// [RFC 1952]: https://datatracker.ietf.org/doc/html/rfc1952
 const GZIP_MAGIC_NUMBER: [u8; 2] = [0x1f, 0x8b];
 
-/// Returns [`true`] if `data` is a valid SVG data, and [`false`] otherwise.
+/// Returns [`true`] if `data` is a valid [SVG] data, and [`false`] otherwise.
 ///
-/// This function also supports the gzip-compressed SVG image (`.svgz`).
+/// This function also supports the [gzip-compressed] SVG image (`.svgz`).
 ///
 /// # Examples
 ///
@@ -62,6 +68,9 @@ const GZIP_MAGIC_NUMBER: [u8; 2] = [0x1f, 0x8b];
 ///     true
 /// );
 /// ```
+///
+/// [SVG]: https://www.w3.org/Graphics/SVG/
+/// [gzip-compressed]: https://datatracker.ietf.org/doc/html/rfc1952
 pub fn is_svg(data: impl AsRef<[u8]>) -> bool {
     let inner = |data: &[u8]| -> bool {
         let opt = Options::default();
@@ -70,8 +79,8 @@ pub fn is_svg(data: impl AsRef<[u8]>) -> bool {
     inner(data.as_ref())
 }
 
-/// Returns [`true`] if `data` is a valid non gzip-compressed SVG data (`.svg`),
-/// and [`false`] otherwise.
+/// Returns [`true`] if `data` is a valid non [gzip-compressed] [SVG] data
+/// (`.svg`), and [`false`] otherwise.
 ///
 /// This function returns [`false`] if `data` is a valid SVG data, but
 /// gzip-compressed (`.svgz`).
@@ -93,13 +102,16 @@ pub fn is_svg(data: impl AsRef<[u8]>) -> bool {
 ///     false
 /// );
 /// ```
+///
+/// [gzip-compressed]: https://datatracker.ietf.org/doc/html/rfc1952
+/// [SVG]: https://www.w3.org/Graphics/SVG/
 pub fn is_svg_string(data: impl AsRef<[u8]>) -> bool {
     let inner = |data: &[u8]| -> bool { is_svg(data) && !data.starts_with(&GZIP_MAGIC_NUMBER) };
     inner(data.as_ref())
 }
 
-/// Returns [`true`] if `data` is a valid gzip-compressed SVG data (`.svgz`),
-/// and [`false`] otherwise.
+/// Returns [`true`] if `data` is a valid [gzip-compressed] [SVG] data
+/// (`.svgz`), and [`false`] otherwise.
 ///
 /// This function returns [`false`] if `data` is a valid SVG data, but non
 /// gzip-compressed (`.svg`).
@@ -121,6 +133,9 @@ pub fn is_svg_string(data: impl AsRef<[u8]>) -> bool {
 ///     false
 /// );
 /// ```
+///
+/// [gzip-compressed]: https://datatracker.ietf.org/doc/html/rfc1952
+/// [SVG]: https://www.w3.org/Graphics/SVG/
 pub fn is_svgz(data: impl AsRef<[u8]>) -> bool {
     let inner = |data: &[u8]| -> bool { is_svg(data) && data.starts_with(&GZIP_MAGIC_NUMBER) };
     inner(data.as_ref())
