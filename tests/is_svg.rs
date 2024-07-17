@@ -12,6 +12,21 @@
 #[test]
 #[allow(clippy::cognitive_complexity, clippy::too_many_lines)]
 fn is_svg_from_svg() {
+    assert!(is_svg::is_svg(include_str!("data/ferris/corro.svg")));
+    assert!(is_svg::is_svg(include_str!("data/ferris/cuddlyferris.svg")));
+    assert!(is_svg::is_svg(include_str!(
+        "data/ferris/rustacean-flat-gesture.svg"
+    )));
+    assert!(is_svg::is_svg(include_str!(
+        "data/ferris/rustacean-flat-happy.svg"
+    )));
+    assert!(is_svg::is_svg(include_str!(
+        "data/ferris/rustacean-flat-noshadow.svg"
+    )));
+    assert!(is_svg::is_svg(include_str!(
+        "data/ferris/rustacean-orig-noshadow.svg"
+    )));
+    assert!(is_svg::is_svg(include_str!("data/git/Git-Logo-2Color.svg")));
     assert!(is_svg::is_svg(include_str!(
         "data/usvg/clip-path-with-complex-text.svg"
     )));
@@ -127,6 +142,12 @@ fn is_svg_from_invalid_svg() {
 
 #[test]
 fn is_svg_from_non_svg() {
+    assert!(!is_svg::is_svg(include_bytes!(
+        "data/git/Git-Logo-2Color.eps"
+    )));
+    assert!(!is_svg::is_svg(include_bytes!(
+        "data/git/Git-Logo-2Color.png"
+    )));
     assert!(!is_svg::is_svg(include_bytes!("data/w3/svg-logo-v.jxl")));
     assert!(!is_svg::is_svg(include_bytes!("data/w3/svg-logo-v.png")));
     assert!(!is_svg::is_svg(include_bytes!("data/w3/svg-logo-v.webp")));
