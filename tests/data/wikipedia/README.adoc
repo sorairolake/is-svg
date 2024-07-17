@@ -1,0 +1,11 @@
+// SPDX-FileCopyrightText: 2024 Shun Sakai
+//
+// SPDX-License-Identifier: Apache-2.0 OR MIT
+
+= Test Data from Wikipedia
+:enwp-url: https://en.wikipedia.org
+
+Test data were imported from {enwp-url}[Wikipedia].
+
+.These can be obtained from
+* {enwp-url}/w/index.php?title=SVG_animation&oldid=1193213152[SVG animation]

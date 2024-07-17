@@ -1,0 +1,13 @@
+// SPDX-FileCopyrightText: 2024 Shun Sakai
+//
+// SPDX-License-Identifier: Apache-2.0 OR MIT
+
+= Test Data from the W3C
+:w3-url: https://www.w3.org
+:w3-svg-logos-url: {w3-url}/2009/08/svg-logos.html
+
+Test data were imported from
+{w3-svg-logos-url}[W3C Scalable Vector Graphics Logos and Policies].
+
+.These can be obtained from
+* {w3-url}/Icons/SVG/svg-logo-v.svg

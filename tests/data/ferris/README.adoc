@@ -1,0 +1,13 @@
+// SPDX-FileCopyrightText: 2024 Shun Sakai
+//
+// SPDX-License-Identifier: Apache-2.0 OR MIT
+
+= Test Data from Rustacean.net
+:rustacean-net-url: https://www.rustacean.net/
+:rustacean-net-repo-url: https://github.com/aldeka/rustacean.net
+
+Test data were imported from {rustacean-net-url}[Rustacean.net].
+
+.These can be obtained from
+* {rustacean-net-url}
+* {rustacean-net-repo-url}

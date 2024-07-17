@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<svg version="1.1" viewBox="-4 -4 8 8" xmlns="http://www.w3.org/2000/svg" onload="rotate(evt)">
+  <script>
+    function rotate(evt) {
+      const object = evt.target.ownerDocument.getElementById("rot");
+      setInterval(() => {
+        const now = new Date();
+        const milliseconds = now.getTime() % 1000;
+        const degrees = milliseconds * 0.36;
+        object.setAttribute("transform", `rotate(${degrees})`);
+      }, 20);
+    }
+  </script>
+  <circle id="rot" cy="1" fill="none" r="2" stroke="green"/>
+</svg>

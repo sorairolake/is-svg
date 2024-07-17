@@ -1,0 +1,12 @@
+// SPDX-FileCopyrightText: 2024 Shun Sakai
+//
+// SPDX-License-Identifier: Apache-2.0 OR MIT
+
+= Test Data from usvg
+:usvg-url: https://github.com/RazrFalcon/resvg
+:usvg-resources-url: {usvg-url}/tree/v0.42.0/crates/usvg/tests/files
+
+Test data were imported from {usvg-url}[usvg] version 0.42.0.
+
+.These can be obtained from
+* {usvg-resources-url}
