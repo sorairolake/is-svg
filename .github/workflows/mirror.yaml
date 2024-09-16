@@ -13,8 +13,8 @@ on:
       - "**"
 
 jobs:
-  mirror:
-    name: Mirror to mirror repositories
+  gitlab:
+    name: Mirror to GitLab
     if: github.repository_owner == 'sorairolake'
     runs-on: ubuntu-22.04
     steps:
@@ -29,6 +29,16 @@ jobs:
           GIT_USERNAME: sorairolake
           GIT_PASSWORD: ${{ secrets.GITLAB_TOKEN }}
           PUSH_ALL_REFS: "false"
+
+  codeberg:
+    name: Mirror to Codeberg
+    if: github.repository_owner == 'sorairolake'
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Mirror to Codeberg
         uses: yesolutions/mirror-action@v0.7.0
         with:
