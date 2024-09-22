@@ -21,7 +21,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-is-svg = "0.1.1"
+is-svg = "0.1.2"
 ```
 
 ### Example

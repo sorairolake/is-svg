@@ -32,7 +32,7 @@
 //! [SVG]: https://www.w3.org/Graphics/SVG/
 //! [gzip-compressed]: https://datatracker.ietf.org/doc/html/rfc1952
 
-#![doc(html_root_url = "https://docs.rs/is-svg/0.1.1/")]
+#![doc(html_root_url = "https://docs.rs/is-svg/0.1.2/")]
 // Lint levels of rustc.
 #![forbid(unsafe_code)]
 #![deny(missing_debug_implementations, missing_docs)]
