@@ -10,6 +10,7 @@ on:
       - "release/*"
     tags:
       - "v[0-9]+.[0-9]+.[0-9]+"
+  workflow_dispatch:
 
 jobs:
   semver:
@@ -19,4 +20,4 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
       - name: Check Semantic Versioning
-        uses: obi1kenobi/cargo-semver-checks-action@v2.5
+        uses: obi1kenobi/cargo-semver-checks-action@v2.6

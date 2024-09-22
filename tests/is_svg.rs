@@ -4,7 +4,7 @@
 
 // Lint levels of rustc.
 #![forbid(unsafe_code)]
-#![deny(missing_debug_implementations, missing_docs)]
+#![deny(missing_debug_implementations)]
 #![warn(rust_2018_idioms)]
 // Lint levels of Clippy.
 #![warn(clippy::cargo, clippy::nursery, clippy::pedantic)]
@@ -26,7 +26,6 @@ fn is_svg_from_svg() {
     assert!(is_svg::is_svg(include_str!(
         "data/ferris/rustacean-orig-noshadow.svg"
     )));
-    assert!(is_svg::is_svg(include_str!("data/git/Git-Logo-2Color.svg")));
     assert!(is_svg::is_svg(include_str!(
         "data/usvg/clip-path-with-complex-text.svg"
     )));
@@ -128,7 +127,32 @@ fn is_svg_from_svg() {
 
 #[test]
 fn is_svg_from_svgz() {
+    assert!(is_svg::is_svg(include_bytes!("data/ferris/corro.svgz")));
+    assert!(is_svg::is_svg(include_bytes!(
+        "data/ferris/cuddlyferris.svgz"
+    )));
+    assert!(is_svg::is_svg(include_bytes!(
+        "data/ferris/rustacean-flat-gesture.svgz"
+    )));
+    assert!(is_svg::is_svg(include_bytes!(
+        "data/ferris/rustacean-flat-happy.svgz"
+    )));
+    assert!(is_svg::is_svg(include_bytes!(
+        "data/ferris/rustacean-flat-noshadow.svgz"
+    )));
+    assert!(is_svg::is_svg(include_bytes!(
+        "data/ferris/rustacean-orig-noshadow.svgz"
+    )));
     assert!(is_svg::is_svg(include_bytes!("data/w3/svg-logo-v.svgz")));
+    assert!(is_svg::is_svg(include_bytes!(
+        "data/wikipedia/SVG_animation_using_CSS.svgz"
+    )));
+    assert!(is_svg::is_svg(include_bytes!(
+        "data/wikipedia/SVG_animation_using_ES.svgz"
+    )));
+    assert!(is_svg::is_svg(include_bytes!(
+        "data/wikipedia/SVG_animation_using_SMIL.svgz"
+    )));
 }
 
 #[test]
@@ -142,12 +166,6 @@ fn is_svg_from_invalid_svg() {
 
 #[test]
 fn is_svg_from_non_svg() {
-    assert!(!is_svg::is_svg(include_bytes!(
-        "data/git/Git-Logo-2Color.eps"
-    )));
-    assert!(!is_svg::is_svg(include_bytes!(
-        "data/git/Git-Logo-2Color.png"
-    )));
     assert!(!is_svg::is_svg(include_bytes!("data/w3/svg-logo-v.jxl")));
     assert!(!is_svg::is_svg(include_bytes!("data/w3/svg-logo-v.png")));
     assert!(!is_svg::is_svg(include_bytes!("data/w3/svg-logo-v.webp")));
