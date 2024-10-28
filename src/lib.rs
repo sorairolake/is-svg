@@ -33,8 +33,6 @@
 //! [gzip-compressed]: https://datatracker.ietf.org/doc/html/rfc1952
 
 #![doc(html_root_url = "https://docs.rs/is-svg/0.1.2/")]
-// Lint levels of rustc.
-#![deny(missing_docs)]
 
 use usvg::{Options, Tree};
 
