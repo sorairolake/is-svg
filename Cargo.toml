@@ -25,3 +25,13 @@ usvg = { version = "0.44.0", default-features = false }
 [dev-dependencies]
 anyhow = "1.0.91"
 clap = { version = "4.5.20", features = ["derive"] }
+
+[lints.clippy]
+cargo = "warn"
+nursery = "warn"
+pedantic = "warn"
+
+[lints.rust]
+missing_debug_implementations = "deny"
+rust_2018_idioms = { level = "warn", priority = -1 }
+unsafe_code = "forbid"
