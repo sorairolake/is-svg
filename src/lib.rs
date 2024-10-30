@@ -67,6 +67,7 @@ const GZIP_MAGIC_NUMBER: [u8; 2] = [0x1f, 0x8b];
 ///
 /// [SVG]: https://www.w3.org/Graphics/SVG/
 /// [gzip-compressed]: https://datatracker.ietf.org/doc/html/rfc1952
+#[inline]
 pub fn is_svg(data: impl AsRef<[u8]>) -> bool {
     let inner = |data: &[u8]| -> bool {
         let opt = Options::default();
@@ -101,6 +102,7 @@ pub fn is_svg(data: impl AsRef<[u8]>) -> bool {
 ///
 /// [gzip-compressed]: https://datatracker.ietf.org/doc/html/rfc1952
 /// [SVG]: https://www.w3.org/Graphics/SVG/
+#[inline]
 pub fn is_svg_string(data: impl AsRef<[u8]>) -> bool {
     let inner = |data: &[u8]| -> bool { is_svg(data) && !data.starts_with(&GZIP_MAGIC_NUMBER) };
     inner(data.as_ref())
@@ -132,6 +134,7 @@ pub fn is_svg_string(data: impl AsRef<[u8]>) -> bool {
 ///
 /// [gzip-compressed]: https://datatracker.ietf.org/doc/html/rfc1952
 /// [SVG]: https://www.w3.org/Graphics/SVG/
+#[inline]
 pub fn is_svgz(data: impl AsRef<[u8]>) -> bool {
     let inner = |data: &[u8]| -> bool { is_svg(data) && data.starts_with(&GZIP_MAGIC_NUMBER) };
     inner(data.as_ref())
