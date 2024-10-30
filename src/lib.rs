@@ -13,20 +13,17 @@
 //! # Examples
 //!
 //! ```
-//! assert_eq!(
-//!     is_svg::is_svg(include_str!("../tests/data/w3/svg-logo-v.svg")),
-//!     true
-//! );
-//! assert_eq!(
-//!     is_svg::is_svg(include_bytes!("../tests/data/w3/svg-logo-v.png")),
-//!     false
-//! );
+//! assert!(is_svg::is_svg(include_str!(
+//!     "../tests/data/w3/svg-logo-v.svg"
+//! )));
+//! assert!(!is_svg::is_svg(include_bytes!(
+//!     "../tests/data/w3/svg-logo-v.png"
+//! )));
 //!
 //! // `.svgz` is also supported.
-//! assert_eq!(
-//!     is_svg::is_svg(include_bytes!("../tests/data/w3/svg-logo-v.svgz")),
-//!     true
-//! );
+//! assert!(is_svg::is_svg(include_bytes!(
+//!     "../tests/data/w3/svg-logo-v.svgz"
+//! )));
 //! ```
 //!
 //! [SVG]: https://www.w3.org/Graphics/SVG/
@@ -50,19 +47,16 @@ const GZIP_MAGIC_NUMBER: [u8; 2] = [0x1f, 0x8b];
 /// # Examples
 ///
 /// ```
-/// assert_eq!(
-///     is_svg::is_svg(include_str!("../tests/data/w3/svg-logo-v.svg")),
-///     true
-/// );
-/// assert_eq!(
-///     is_svg::is_svg(include_bytes!("../tests/data/w3/svg-logo-v.png")),
-///     false
-/// );
+/// assert!(is_svg::is_svg(include_str!(
+///     "../tests/data/w3/svg-logo-v.svg"
+/// )));
+/// assert!(!is_svg::is_svg(include_bytes!(
+///     "../tests/data/w3/svg-logo-v.png"
+/// )));
 ///
-/// assert_eq!(
-///     is_svg::is_svg(include_bytes!("../tests/data/w3/svg-logo-v.svgz")),
-///     true
-/// );
+/// assert!(is_svg::is_svg(include_bytes!(
+///     "../tests/data/w3/svg-logo-v.svgz"
+/// )));
 /// ```
 ///
 /// [SVG]: https://www.w3.org/Graphics/SVG/
@@ -85,19 +79,16 @@ pub fn is_svg(data: impl AsRef<[u8]>) -> bool {
 /// # Examples
 ///
 /// ```
-/// assert_eq!(
-///     is_svg::is_svg_string(include_str!("../tests/data/w3/svg-logo-v.svg")),
-///     true
-/// );
-/// assert_eq!(
-///     is_svg::is_svg_string(include_bytes!("../tests/data/w3/svg-logo-v.png")),
-///     false
-/// );
+/// assert!(is_svg::is_svg_string(include_str!(
+///     "../tests/data/w3/svg-logo-v.svg"
+/// )));
+/// assert!(!is_svg::is_svg_string(include_bytes!(
+///     "../tests/data/w3/svg-logo-v.png"
+/// )));
 ///
-/// assert_eq!(
-///     is_svg::is_svg_string(include_bytes!("../tests/data/w3/svg-logo-v.svgz")),
-///     false
-/// );
+/// assert!(!is_svg::is_svg_string(include_bytes!(
+///     "../tests/data/w3/svg-logo-v.svgz"
+/// )));
 /// ```
 ///
 /// [gzip-compressed]: https://datatracker.ietf.org/doc/html/rfc1952
@@ -117,19 +108,16 @@ pub fn is_svg_string(data: impl AsRef<[u8]>) -> bool {
 /// # Examples
 ///
 /// ```
-/// assert_eq!(
-///     is_svg::is_svgz(include_bytes!("../tests/data/w3/svg-logo-v.svgz")),
-///     true
-/// );
-/// assert_eq!(
-///     is_svg::is_svgz(include_bytes!("../tests/data/w3/svg-logo-v.png")),
-///     false
-/// );
+/// assert!(is_svg::is_svgz(include_bytes!(
+///     "../tests/data/w3/svg-logo-v.svgz"
+/// )));
+/// assert!(!is_svg::is_svgz(include_bytes!(
+///     "../tests/data/w3/svg-logo-v.png"
+/// )));
 ///
-/// assert_eq!(
-///     is_svg::is_svgz(include_str!("../tests/data/w3/svg-logo-v.svg")),
-///     false
-/// );
+/// assert!(!is_svg::is_svgz(include_str!(
+///     "../tests/data/w3/svg-logo-v.svg"
+/// )));
 /// ```
 ///
 /// [gzip-compressed]: https://datatracker.ietf.org/doc/html/rfc1952
