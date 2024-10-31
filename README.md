@@ -21,26 +21,7 @@ Add this to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-is-svg = "0.1.2"
-```
-
-### Example
-
-```rust
-assert_eq!(
-    is_svg::is_svg(include_str!("tests/data/w3/svg-logo-v.svg")),
-    true
-);
-assert_eq!(
-    is_svg::is_svg(include_bytes!("tests/data/w3/svg-logo-v.png")),
-    false
-);
-
-// `.svgz` is also supported.
-assert_eq!(
-    is_svg::is_svg(include_bytes!("tests/data/w3/svg-logo-v.svgz")),
-    true
-);
+is-svg = "0.1.3"
 ```
 
 ### Documentation
