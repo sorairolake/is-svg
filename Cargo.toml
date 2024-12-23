@@ -23,7 +23,7 @@ include = ["/LICENSES", "/README.md", "/src"]
 usvg = { version = "0.44.0", default-features = false }
 
 [dev-dependencies]
-anyhow = "1.0.94"
+anyhow = "1.0.95"
 clap = { version = "4.5.23", features = ["derive"] }
 
 [lints.clippy]
