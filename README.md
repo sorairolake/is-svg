@@ -17,11 +17,10 @@ image.
 
 ## Usage
 
-Add this to your `Cargo.toml`:
+Run the following command in your project directory:
 
-```toml
-[dependencies]
-is-svg = "0.1.4"
+```sh
+cargo add is-svg
 ```
 
 ### Documentation
