@@ -11,7 +11,7 @@ use std::{
     path::PathBuf,
 };
 
-use anyhow::{anyhow, Context};
+use anyhow::{Context, anyhow};
 use clap::Parser;
 
 #[derive(Debug, Parser)]
