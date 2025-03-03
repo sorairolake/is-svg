@@ -18,7 +18,7 @@ categories = ["multimedia::images"]
 include = ["/LICENSES", "/README.md", "/src"]
 
 [dependencies]
-usvg = { version = "0.44.0", default-features = false }
+usvg = { version = "0.45.0", default-features = false }
 
 [dev-dependencies]
 anyhow = "1.0.96"
