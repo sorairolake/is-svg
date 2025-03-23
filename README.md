@@ -17,11 +17,10 @@ image.
 
 ## Usage
 
-Add this to your `Cargo.toml`:
+Run the following command in your project directory:
 
-```toml
-[dependencies]
-is-svg = "0.1.4"
+```sh
+cargo add is-svg
 ```
 
 ### Documentation
@@ -30,7 +29,7 @@ See the [documentation][docs-url] for more details.
 
 ## Minimum supported Rust version
 
-The minimum supported Rust version (MSRV) of this library is v1.65.0.
+The minimum supported Rust version (MSRV) of this library is v1.85.0.
 
 ## Source code
 
@@ -52,12 +51,12 @@ Please see [CONTRIBUTING.adoc].
 
 ## License
 
-Copyright &copy; 2024 Shun Sakai (see [AUTHORS.adoc])
+Copyright (C) 2024 Shun Sakai (see [AUTHORS.adoc])
 
 This library is distributed under the terms of either the _Apache License 2.0_
 or the _MIT License_.
 
-This project is compliant with version 3.2 of the [_REUSE Specification_]. See
+This project is compliant with version 3.3 of the [_REUSE Specification_]. See
 copyright notices of individual files for more details on copyright and
 licensing information.
 
@@ -74,4 +73,4 @@ licensing information.
 [CHANGELOG.adoc]: CHANGELOG.adoc
 [CONTRIBUTING.adoc]: CONTRIBUTING.adoc
 [AUTHORS.adoc]: AUTHORS.adoc
-[_REUSE Specification_]: https://reuse.software/spec/
+[_REUSE Specification_]: https://reuse.software/spec-3.3/

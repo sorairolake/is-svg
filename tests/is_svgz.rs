@@ -3,7 +3,6 @@
 // SPDX-License-Identifier: Apache-2.0 OR MIT
 
 #[test]
-#[allow(clippy::cognitive_complexity, clippy::too_many_lines)]
 fn is_svgz_from_svg() {
     assert!(!is_svg::is_svgz(include_str!("data/ferris/corro.svg")));
     assert!(!is_svg::is_svgz(include_str!(
