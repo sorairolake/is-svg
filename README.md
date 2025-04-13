@@ -36,11 +36,6 @@ The minimum supported Rust version (MSRV) of this library is v1.85.0.
 The upstream repository is available at
 <https://github.com/sorairolake/is-svg.git>.
 
-The source code is also available at:
-
-- <https://gitlab.com/sorairolake/is-svg.git>
-- <https://codeberg.org/sorairolake/is-svg.git>
-
 ## Changelog
 
 Please see [CHANGELOG.adoc].
