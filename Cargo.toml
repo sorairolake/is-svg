@@ -22,7 +22,7 @@ usvg = { version = "0.45.1", default-features = false }
 
 [dev-dependencies]
 anyhow = "1.0.99"
-clap = { version = "4.5.45", features = ["derive"] }
+clap = { version = "4.5.46", features = ["derive"] }
 
 [lints.clippy]
 cargo = "warn"
