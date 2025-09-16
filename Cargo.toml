@@ -5,12 +5,10 @@
 [package]
 name = "is-svg"
 version = "0.2.1"
-authors = ["Shun Sakai <sorairolake@protonmail.ch>"]
 edition = "2024"
 rust-version = "1.85.0"
 description = "Test whether a given data is a SVG image"
 documentation = "https://docs.rs/is-svg"
-readme = "README.md"
 repository = "https://github.com/sorairolake/is-svg"
 license = "Apache-2.0 OR MIT"
 keywords = ["svg"]
