@@ -23,9 +23,10 @@ anyhow = "1.0.100"
 clap = { version = "4.5.54", features = ["derive"] }
 
 [lints.clippy]
-cargo = "warn"
-nursery = "warn"
-pedantic = "warn"
+cargo = { level = "warn", priority = -1 }
+multiple_crate_versions = "allow"
+nursery = { level = "warn", priority = -1 }
+pedantic = { level = "warn", priority = -1 }
 
 [lints.rust]
 missing_debug_implementations = "deny"
