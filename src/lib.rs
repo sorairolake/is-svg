@@ -41,7 +41,7 @@ use usvg::{Options, Tree};
 /// Magic number of gzip defined in [RFC 1952].
 ///
 /// [RFC 1952]: https://datatracker.ietf.org/doc/html/rfc1952
-const GZIP_MAGIC_NUMBER: [u8; 2] = [0x1f, 0x8b];
+const GZIP_MAGIC_NUMBER: [u8; 2] = [0x1F, 0x8B];
 
 /// Returns [`true`] if `data` is a valid [SVG] data, and [`false`] otherwise.
 ///
