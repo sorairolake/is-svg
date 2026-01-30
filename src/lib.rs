@@ -32,7 +32,7 @@
 //! [SVG]: https://www.w3.org/Graphics/SVG/
 //! [gzip-compressed]: https://datatracker.ietf.org/doc/html/rfc1952
 
-#![doc(html_root_url = "https://docs.rs/is-svg/0.2.1/")]
+#![doc(html_root_url = "https://docs.rs/is-svg/0.2.2/")]
 // Lint levels of rustc.
 #![deny(missing_docs)]
 
@@ -41,7 +41,7 @@ use usvg::{Options, Tree};
 /// Magic number of gzip defined in [RFC 1952].
 ///
 /// [RFC 1952]: https://datatracker.ietf.org/doc/html/rfc1952
-const GZIP_MAGIC_NUMBER: [u8; 2] = [0x1f, 0x8b];
+const GZIP_MAGIC_NUMBER: [u8; 2] = [0x1F, 0x8B];
 
 /// Returns [`true`] if `data` is a valid [SVG] data, and [`false`] otherwise.
 ///
@@ -67,7 +67,6 @@ const GZIP_MAGIC_NUMBER: [u8; 2] = [0x1f, 0x8b];
 ///
 /// [SVG]: https://www.w3.org/Graphics/SVG/
 /// [gzip-compressed]: https://datatracker.ietf.org/doc/html/rfc1952
-#[inline]
 pub fn is_svg(data: impl AsRef<[u8]>) -> bool {
     let inner = |data: &[u8]| -> bool {
         let opt = Options::default();
@@ -102,7 +101,6 @@ pub fn is_svg(data: impl AsRef<[u8]>) -> bool {
 ///
 /// [gzip-compressed]: https://datatracker.ietf.org/doc/html/rfc1952
 /// [SVG]: https://www.w3.org/Graphics/SVG/
-#[inline]
 pub fn is_svg_string(data: impl AsRef<[u8]>) -> bool {
     let inner = |data: &[u8]| -> bool { is_svg(data) && !data.starts_with(&GZIP_MAGIC_NUMBER) };
     inner(data.as_ref())
@@ -134,7 +132,6 @@ pub fn is_svg_string(data: impl AsRef<[u8]>) -> bool {
 ///
 /// [gzip-compressed]: https://datatracker.ietf.org/doc/html/rfc1952
 /// [SVG]: https://www.w3.org/Graphics/SVG/
-#[inline]
 pub fn is_svgz(data: impl AsRef<[u8]>) -> bool {
     let inner = |data: &[u8]| -> bool { is_svg(data) && data.starts_with(&GZIP_MAGIC_NUMBER) };
     inner(data.as_ref())
