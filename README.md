@@ -27,6 +27,10 @@ cargo add is-svg
 
 See the [documentation][docs-url] for more details.
 
+## Examples
+
+Please see the [examples] directory for examples of using this library.
+
 ## Minimum supported Rust version
 
 The minimum supported Rust version (MSRV) of this library is v1.87.0.
@@ -65,6 +69,7 @@ licensing information.
 [license-badge]: https://img.shields.io/crates/l/is-svg?style=for-the-badge
 [Rust]: https://www.rust-lang.org/
 [SVG]: https://www.w3.org/Graphics/SVG/
+[examples]: examples
 [CHANGELOG.adoc]: CHANGELOG.adoc
 [CONTRIBUTING.adoc]: CONTRIBUTING.adoc
 [AUTHORS.adoc]: AUTHORS.adoc
